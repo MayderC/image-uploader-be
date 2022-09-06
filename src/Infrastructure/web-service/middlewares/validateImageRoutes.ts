@@ -15,9 +15,11 @@ export const validations =  (req: Request, res: Response, next: NextFunction) =>
 };
 
 export const saveMiddleware = [
-  body('img').notEmpty().withMessage('the img property cannot be empty')
+  body('img').notEmpty().withMessage('the img property cannot be empty'),
+  validations
 ]
 
 export const getMiddleware = [
-  param('id').notEmpty().withMessage('the id param cannot be empty')
+  param('id').notEmpty().withMessage('the id param cannot be empty'),
+  validations
 ]
