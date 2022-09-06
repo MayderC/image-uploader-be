@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
 import { IImageService } from './../../../Application/Ports/Services/IImageService';
+import { IIMage } from './../../../Application/Entities/Image';
 
 
 export class ImageController {
@@ -21,7 +22,8 @@ export class ImageController {
 
   async save(req:Request, res:Response): Promise<Response<any>> {
     try {
-      const response = await this._imageService.save(req.body.img)      
+      const img: IIMage = {id: "", img: req.body.img}
+      const response = await this._imageService.save(img)      
       return res.send({response})
     } catch (error) {
       return res.status(400).send()
