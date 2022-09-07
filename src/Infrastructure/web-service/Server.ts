@@ -1,6 +1,7 @@
 import express, { Application } from 'express'
 import cors from 'cors'
 import env from '../../config/Environments/index'
+import {conexion} from '../database/conexion'
 
 export class Server {
 
@@ -13,6 +14,14 @@ export class Server {
     this._imageRoutes = imageRoutes
     this.middlwares()
     this.routes()
+    this.conexion()
+    
+  }
+
+  conexion(){
+    conexion().then(() => {
+      console.log("Database ON")
+    })
   }
   middlwares(){
     this.app.use(express.json())
