@@ -23,10 +23,11 @@ export class ImageController {
   async save(req:Request, res:Response): Promise<Response<any>> {
     try {
       const img: IIMage = {id: "", img: req.body.img}
+      console.log(img)
       const response = await this._imageService.save(img)      
       return res.send({response})
     } catch (error) {
-      return res.status(400).send()
+      return res.status(400).send(error)
     }
   }
 }

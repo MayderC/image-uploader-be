@@ -11,6 +11,7 @@ export class ImageService implements IImageService{
   }
 
   async save(img: IIMage): Promise<IIMage> {
+    console.log(img)
     return await this._imageRepository.save(img)
   }
   async get(id: string): Promise<IIMage> {
