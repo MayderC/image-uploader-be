@@ -8,5 +8,7 @@ export interface IEnvironment {
   DB_NAME: string;
   DB_PORT: number;
   DB_HOST: string;
+  DB_STRING_CNN: string;
+  CORS_ORIGIN  : string;
 }
 

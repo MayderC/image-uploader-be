@@ -25,7 +25,10 @@ export class Server {
   }
   middlwares(){
     this.app.use(express.json())
-    this.app.use(cors())
+    this.app.use(cors({
+      origin : env.CORS_ORIGIN,
+      methods : ['GET', 'POST']
+    }))
   }
   routes(){
     this.app.use(this.path + 'img', this._imageRoutes)
