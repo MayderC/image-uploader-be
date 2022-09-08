@@ -2,13 +2,10 @@
 import { IIMage } from '../../Entities/Image';
 import { IRepostory } from './../../Ports/Repositories/IRepository';
 import {Image} from '../../../Infrastructure/database/models/image.model'
-import {Types} from 'mongoose'
 
 export class ImageRepostory implements IRepostory{
 
-
-  constructor(){
-  }
+  constructor(){}
   
   async save(image: IIMage): Promise<IIMage> {
     const imageSaved = await Image.create({img: image.img})
@@ -17,6 +14,7 @@ export class ImageRepostory implements IRepostory{
 
   async get(id: string): Promise<IIMage> {
     const res = await Image.findById(id) 
-    return res  || {id: "", img: ""}
+    if(!res) throw new Error("Not Found");
+    return  {id: res?.id, img: res?.img}
   }
 }
